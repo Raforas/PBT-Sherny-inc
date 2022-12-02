@@ -3,42 +3,48 @@ package pcustomer;
 import java.lang.Exception;
 import java.util.Scanner;
 
-import pProcess.*;
 
-abstract class LoginUsrPwd{
-abstract public void EnterUsrPwd();
+import pProcess.SelectionMember;
+
+
+interface  LoginUsrPwd{
+  //create interface class and method for login password
+public abstract void EnterUsrPwd();
 
 }
 
 
 
-class error extends Exception {
+class error extends Exception {// create user define exception handling
             error(String message){
 
                 System.out.println(message);
             }
-
     }
 
-public class Member extends LoginUsrPwd
+public class Member implements LoginUsrPwd  
 {
+  //extend the implement loginuserPwd
+  SelectionMember select = new SelectionMember();
   Scanner scan = new Scanner(System.in);
   String username;
   String password;
-  
+  //create the variavle username and \ password 
+
   public Member()
   {//constructor for initial username and pwd
     this.username="Shern";
     this.password="Rafeeq";
+
+    //those are the username and password
   }
   
-  public void EnterUsrPwd()
+   public void EnterUsrPwd()
   {  
-
-    //call class
-    SelectionMember slc = new SelectionMember();
     
-    for (int i = 3; i > 0; i--) {
+    //call class
+    
+    for (int tries = 1; tries <= 3; tries++) {// give user 3 try for entering the username & password
         
    
     System.out.print("Enter Username: ");
@@ -48,11 +54,13 @@ public class Member extends LoginUsrPwd
     System.out.println("");
     
   
-    try{
-    if(Usrname.equals(username)&&Passwd.equals(password)){
+    try{// try catch will check either the password is right or wrong 
+    if(Usrname.equals(username)&&Passwd.equals(password)){ // check if the password or username right or wrong
      
-      char yn;
-      int opt;
+      int opt; //variable for user input integer value
+
+
+      //menu for display the 4 options
       do { System.out.println("\nWelcome "+username);
       System.out.println("====================");
         System.out.println("\n1. Display Item"+"\n2. Show total"+
@@ -62,35 +70,31 @@ public class Member extends LoginUsrPwd
         
       switch (opt) {
 
-          case 1:slc.display_data();break;
-          case 2:slc.calculation1();break;
-          case 3:slc.calculation2();break;
-          case 4:slc.Exit();break; 
+          case 1:select.display_data();break;
+          case 2:select.calculation1();break;
+          case 3:select.calculation2();break;
+          case 4:select.Exit();break; 
           default: System.out.println("Incorrect input."); 
             break;
         }
       
-      } while (opt!= 4);
+      } while (opt!= 4);// if while equals to 4 the program will stop
       
-  //test
-
       break;
       }//if curly
     
+
       else{
 
 
-            throw new error("Username or Password is wrong");
+            throw new error("Username or Password is wrong Try again. Attempt: "+tries+" out of 3");
     }//else curly
 
   }//try curly
     catch(Exception e){
-        if(i!=1){
-            System.out.println("try again");
-        }// if curly
-        else{
+      
             System.out.println("Account Locked");
-        }//else curly 
+         
     }//catch curly
     }//for curly
   }// method curly

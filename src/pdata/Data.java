@@ -2,8 +2,8 @@ package pdata;
 
 
 public interface Data {
-    	//declare variables in display
-
+    	//create method to be used for both selection
+		
 		abstract void display_data();
 		abstract double calculation1();
 		abstract double calculation2();

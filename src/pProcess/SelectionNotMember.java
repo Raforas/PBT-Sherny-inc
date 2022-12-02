@@ -1,95 +1,90 @@
 package pProcess;
 
-import pdata.Data;
-import java.util.*;
 
-public class SelectionNotMember implements Data {
+public class SelectionNotMember extends SelectionMember { // we extends calss "Data"
+
+//Override
+@Override
+public void display_data(){//method to display list of menu 
     
-
-
-        //we disable discount for not member
-
-        //scanner for user input
-        Scanner chose = new Scanner(System.in);
-        //for inserting each purchases
-        ArrayList<Double> store = new ArrayList<>();
-        
-        
+    //show set of items that are available
+    System.out.println("\n1.Mouse:\tRM "+num1+"\n2.MP3 player:\tRM "+num2+
+    "\n3.Webcam:\tRM "+num3+"\n4.Hard drive:\tRM "+num4+"\n5.Headphones:\tRM "+num5
+    +"\n6. Exit.");
     
-
-        //set the value for each items
-        double  total=0,discount=0,
-                num1=40.99,num2=10.99,
-                num3=70.49,num4=149.99,
-                num5=25.50;
-
+    //we check either the data the is empty or not  
+    if (!store.isEmpty()){
+        store.clear();
+    }
+    
+    
+    //while true is for continuously adding the item until user is done
+    while(true){
+        System.out.print("Enter code of your Item:  ");
+        
+            //the 'choice' here will check what number user inputed.
             
-                public void display_data(){
-		 
-			
-        
-                    System.out.println("\n1.Mouse:\tRM "+num1+"\n2.MP3 player:\tRM "+num2+
-                    "\n3.Webcam:\tRM "+num3+"\n4.Hard drive:\tRM "+num4+"\n5.Headphones:\tRM "+num5
-                    +"\n6. Exit.");
-                       if (!store.isEmpty()){
-                        store.clear();
+            int choice = chose.nextInt();
+            switch (choice) {//switch case
+                
+                
+                case 1: store.add(num1); System.out.println(add); break;
+                case 2: store.add(num2); System.out.println(add); break;
+                case 3: store.add(num3); System.out.println(add); break;
+                case 4: store.add(num4); System.out.println(add); break;
+                case 5: store.add(num5); System.out.println(add); break;
+                case 6: break;
+                //choices
+                
+                default: System.out.println("Wrong operation."); break;
+            }
+            //if user press 6 the program will bring back user to menu
+            if(choice == 6){
+                break;
+            }
+            
+            
                     }
-                char yn;
-                 while(true){
-                    System.out.print("Enter code of your Item:  ");
-        
-                 
-                    int choice = chose.nextInt();
-                        switch (choice) {
-                            case 1: store.add(num1); System.out.println("Item added."); break;
-                            case 2: store.add(num2); System.out.println("Item added."); break;
-                            case 3: store.add(num3); System.out.println("Item added."); break;
-                            case 4: store.add(num4); System.out.println("Item added."); break;
-                            case 5: store.add(num5); System.out.println("Item added."); break;
-                            case 6: break;
-                            
-                            default: System.out.println("Wrong operation."); break;
-                        }
-                             if(choice == 6){
-                                break;
-                         }
-                       
-        
-                    }
-                   
+                    
                 }
-            
-    
-
-    boolean used=false;
-
-    public double calculation1() {
+                
+                
+                // this variable will be use to check if user make the calculation or not.
+                
+                
+                //Override
+                @Override
+                public double calculation1() {
+                    // for this class we calulate the total of item first
         SelectionNotMember take = new SelectionNotMember();
-
-        if (!used) {
-             total=0;
+        
+        if (!used) {// if user didn't calculate their total yet this will be user
+        total=0;
         for (Double double1 : store) {
             total+=double1;
-        }
-      
-    System.out.println("Total: RM "+ String.format("%.2f",total));
+        }//calculate total curly
+        
+        System.out.println("Total: RM "+ String.format("%.2f",total));
+        //discount doesn't shown here because non member wouldn't get extra promotion
        
         }
-        else{
-    
-        take.total = total;
-         System.out.println("Total: RM "+ String.format("%.2f", total));     
+        else{ // otherwise this will be shown ; total they got
+            
+            take.total = total;
+            System.out.println("Total: RM "+ String.format("%.2f", total));     
         }
        
         return total;
     }
-
-
- 
+    
+    
+    
+    //Override
+    @Override
     public double calculation2() {
-       
         
-        if(!used){
+        
+        if(!used){ // to give discount for a buyer that bought items RM50 or above
             if (total>50) {
                 discount = total*0.1;
                 total = total - discount;
@@ -97,30 +92,27 @@ public class SelectionNotMember implements Data {
                 System.out.println("You saved: RM "+ String.format("%.2f",discount));
                 used = true;
                 
-        }//if curly
-         else if (total<50)
+            }//if curly
+            else if (total<50)
             {
-            System.out.println("There are no discount.");
+                System.out.println("There are no discount.");
             }//else curly 
         }//bool curly
         else{
             System.out.println("The current price: RM "+String.format("%.2f",total));
             System.out.println("You have used your discount. Thank you.");
         }
-
-    return total;
+        
+        return total;
     }//method curly
-
     
-
-    public void Exit() {
-    System.out.println("Thank you for purchasing our Item.");
-    System.exit(0);
+    
+    //Override
+    @Override
+    public void Exit() { //method for exiting the program.
+        System.out.println("Thank you for purchasing our Item.");
+        System.exit(0);
     }
-
-
-
-
-
+    
 }
 
