@@ -37,7 +37,7 @@ class MainProgram { //use this class for executing our program
           
             //to check the option
                 if(opt==1){obj.EnterUsrPwd();break;}
-                else if(opt==2) {  obj2.Normal_Display();break;}
+                else if(opt==2) {  obj2.display_data();break;}
  
             throw new ErrorMsg("Wrong operation Try again. Attempt: "+tries+" out of 3");
         }

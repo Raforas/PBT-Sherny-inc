@@ -10,7 +10,7 @@ public class NotMember
   static  Scanner scan = new Scanner(System.in);
      
  
-  public void Normal_Display() 
+  public void display_data() 
   {  // for non member we will only display the method, no need for password and username
 
     SelectionMember  select = new SelectionNotMember();
