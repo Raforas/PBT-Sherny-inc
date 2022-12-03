@@ -12,10 +12,15 @@ public void display_data(){//method to display list of menu
     "\n3.Webcam:\tRM "+num3+"\n4.Hard drive:\tRM "+num4+"\n5.Headphones:\tRM "+num5
     +"\n6. Exit.");
     
-    //we check either the data the is empty or not  
-    if (!store.isEmpty()){
-        store.clear();
+       //we check either the data the is empty or not  
+       if (!store.isEmpty()){
+        store.clear();//we clear the array
+        total=0;
+        discount=0;
+        used= false;
     }
+    
+    
     
     
     //while true is for continuously adding the item until user is done
@@ -88,7 +93,8 @@ public void display_data(){//method to display list of menu
             if (total>50) {
                 discount = total*0.1;
                 total = total - discount;
-                System.out.println("There are discount: RM "+String.format("%.2f",total));
+                System.out.println("There are discount!"); 
+                System.out.println("Current total: RM "+String.format("%.2f",total));
                 System.out.println("You saved: RM "+ String.format("%.2f",discount));
                 used = true;
                 

@@ -44,7 +44,10 @@ public class SelectionMember implements Data{ // we extends calss "Data"
         
             //we check either the data the is empty or not  
             if (!store.isEmpty()){
-                store.clear();
+                store.clear();//we clear the array
+                total=0;
+                discount=0;
+                used= false;
             }
             
             
@@ -120,7 +123,8 @@ public class SelectionMember implements Data{ // we extends calss "Data"
                 take1.discount = discount;
                 discount =  total*0.1;
                 total = total - discount;
-                System.out.println("There are discount: RM "+String.format("%.2f",total));
+                System.out.println("There are discount!"); 
+                System.out.println("Current total: RM "+String.format("%.2f",total));
                 System.out.println("You saved: RM "+ String.format("%.2f",take1.discount+discount));
                 used = true;
                 
